@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
+import styled from 'styled-components';
+
 
 import Person from './Person/Person';
+
+const StyledButton = styled.button`
+      background-color: ${props => props.alt ? 'red' : 'green'};
+      color: white;
+      font: inherit;
+      border: 1px solid blue;
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: yellow;
+        color: black
+`;
 
 class App extends Component {
   state = {
@@ -47,18 +62,19 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'yellow',
-        color: 'black'
-      }
-    };
+
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'yellow',
+    //     color: 'black'
+    //   }
+    // };
 
     let persons = null;
 
@@ -76,11 +92,11 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // };
     }
 
     const classes = [];
@@ -93,15 +109,15 @@ class App extends Component {
     }
 
     return (
-        <div className="App">
-          <h1>Hi, I'm a React App</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <button
-            style={style}
-            // onClick={() => this.switchNameHandler('Maximilian!!')}>Switch Name</button>
-            onClick={this.toglePersonHandler}>Togle Name</button>
-          {persons}
-        </div>
+      <div className="App">
+        <h1>Hi, I'm a React App</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
+        <StyledButton
+          alt = {this.state.showPersons}
+          // style={style}
+          onClick={this.toglePersonHandler}>Togle Name</StyledButton>
+        {persons}
+      </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
